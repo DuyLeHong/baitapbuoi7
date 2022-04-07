@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'album_model.dart';
+import 'album_response_model.dart';
 
 class AlbumScreen extends StatefulWidget {
   const AlbumScreen({Key? key}) : super(key: key);

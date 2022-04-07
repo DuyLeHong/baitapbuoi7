@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 
-import 'album_model.dart';
+import 'album_response_model.dart';
 
 Future<Album> fetchAlbum() async {
   final response = await http.get(
