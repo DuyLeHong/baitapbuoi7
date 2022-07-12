@@ -42,7 +42,7 @@ class _AddProductState extends State<AddProduct> {
         actions: [
           IconButton(
               onPressed: () {
-                _saveForm();
+                _saveForm(context);
               },
               icon: Icon(Icons.save))
         ],
@@ -234,9 +234,14 @@ class _AddProductState extends State<AddProduct> {
     ));
   }
 
-  void _saveForm() {
+  void _saveForm(BuildContext context) {
     if (_formKey.currentState?.validate() == true) {
       _formKey.currentState?.save();
+
+      var newProduct = ProductModel(titleController.text, double.tryParse(priceController.text)!, descriptrionController.text, imageURLController.text);
+
+      Navigator.pop(context, newProduct);
+
       // Navigator.pop(
       //     context,
       //     ProductItem(

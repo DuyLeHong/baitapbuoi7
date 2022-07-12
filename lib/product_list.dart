@@ -6,7 +6,23 @@ import 'package:flutter/widgets.dart';
 
 import 'add_product.dart';
 
-class ProductList extends StatelessWidget {
+class ProductList extends StatefulWidget {
+  @override
+  State<ProductList> createState() => _ProductListState();
+}
+
+List<ProductModel> productList = <ProductModel>[
+  ProductModel('Product 1', 100.0, 'Ok',
+      'https://image.thanhnien.vn/w660/Uploaded/2022/jvunzvu/2021_06_04/diec-lua_fsdb_vsni.jpg'),
+  ProductModel('Product 2', 90.0, 'Ok',
+      'https://media.vov.vn/uploaded/4bpdy3ykolq/2020_01_13/a2_nqng.jpg'),
+  ProductModel('Product 3', 80.0, 'Ok',
+      'https://daohieu.com/wp-content/uploads/2020/05/chim-vang-anh-917x1024.jpg'),
+  ProductModel('Product 4', 95.0, 'Ok',
+      'https://e.khoahoc.tv/photos/image/2020/04/23/chim-Bearded-Reedling.jpg'),
+];
+
+class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -16,11 +32,18 @@ class ProductList extends StatelessWidget {
           centerTitle: true,
           actions: [
             IconButton(
-              onPressed: () {
-                Navigator.push(
+              onPressed: () async {
+                var result = await Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => AddProduct()),
                 );
+
+                if (result != null) {
+                  setState(() {
+                    ProductModel newProduct = result as ProductModel;
+                    productList.add(newProduct);
+                  });
+                }
               },
               icon: const Icon(
                 Icons.add,
