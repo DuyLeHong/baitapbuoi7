@@ -11,7 +11,7 @@ class ListTileCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        goToEditPage(context);
+        _goToEditPage(context);
       },
       child: Row(
         children: [
@@ -32,7 +32,7 @@ class ListTileCustom extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              goToEditPage(context);
+              _goToEditPage(context);
             },
             child: const Icon(
               Icons.edit,
@@ -61,7 +61,7 @@ class ListTileCustom extends StatelessWidget {
     );
   }
 
-  void goToEditPage(BuildContext context) {
+  void _goToEditPage(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(

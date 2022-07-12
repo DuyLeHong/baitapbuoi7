@@ -19,7 +19,6 @@ class _AddProductState extends State<AddProduct> {
   double price = 0.0;
   bool _loadingImage = false;
 
-
   void loadImage() {
     _loadingImage = true;
     precacheImage(NetworkImage(url), context, onError: (e, stackTrace) {
@@ -55,45 +54,65 @@ class _AddProductState extends State<AddProduct> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: Stack(
-                      children: [
-                        Container(
-                          height: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.lightBlueAccent,
-                          ),
-                        ),
-                        Positioned(left:1,child: Container(height: 20,color:Colors.brown.withOpacity(0.8),child: Text('1',style: TextStyle(fontSize: 15),)))
-                      ]),
+                  child: Stack(children: [
+                    Container(
+                      height: 20,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        color: Colors.lightBlueAccent,
+                      ),
+                    ),
+                    Positioned(
+                        left: 1,
+                        child: Container(
+                            height: 20,
+                            color: Colors.brown.withOpacity(0.8),
+                            child: Text(
+                              '1',
+                              style: TextStyle(fontSize: 15),
+                            )))
+                  ]),
                 ),
                 Expanded(
                   flex: 2,
-                  child: Stack(
-                      children: [
-                        Container(
-                          height: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.blue,
-                          ),
-                        ),
-                        Center(child: Container(height: 20,color:Colors.brown.withOpacity(0.8),child: Text('1',style: TextStyle(fontSize: 15),)))
-                      ]),
+                  child: Stack(children: [
+                    Container(
+                      height: 20,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        color: Colors.blue,
+                      ),
+                    ),
+                    Center(
+                        child: Container(
+                            height: 20,
+                            color: Colors.brown.withOpacity(0.8),
+                            child: Text(
+                              '1',
+                              style: TextStyle(fontSize: 15),
+                            )))
+                  ]),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Stack(
-                      children: [
-                        Container(
-                          height: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.orange,
-                          ),
-                        ),
-                        Positioned(right:1,child: Container(height: 20,color:Colors.brown.withOpacity(0.8),child: Text('2',style: TextStyle(fontSize: 15),)))
-                      ]),
+                  child: Stack(children: [
+                    Container(
+                      height: 20,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        color: Colors.orange,
+                      ),
+                    ),
+                    Positioned(
+                        right: 1,
+                        child: Container(
+                            height: 20,
+                            color: Colors.brown.withOpacity(0.8),
+                            child: Text(
+                              '2',
+                              style: TextStyle(fontSize: 15),
+                            )))
+                  ]),
                 ),
               ],
             ),
@@ -144,22 +163,8 @@ class _AddProductState extends State<AddProduct> {
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
                         ),
                       ),
-                      _loadingImage == false
-                          ? Positioned(
-                              top: 10,
-                              left: 10,
-                              child: Icon(Icons.image_outlined))
-                          : Container(
-                              height: 90,
-                              width: 90,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  image: DecorationImage(
-                                      image: NetworkImage(url),
-                                      fit: BoxFit.cover)),
-                            ),
+                      _getImageView(),
+
                     ]),
                     Expanded(
                       child: Padding(
@@ -189,5 +194,27 @@ class _AddProductState extends State<AddProduct> {
         ),
       ),
     ));
+  }
+
+  Widget _getImageView() {
+
+    if (_loadingImage == false) {
+      return Positioned(
+          top: 10,
+          left: 10,
+          child: Icon(Icons.image_outlined));
+    } else {
+      return Container(
+        height: 90,
+        width: 90,
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey),
+            borderRadius:
+            BorderRadius.all(Radius.circular(10.0)),
+            image: DecorationImage(
+                image: NetworkImage(url),
+                fit: BoxFit.cover)),
+      );
+    }
   }
 }
