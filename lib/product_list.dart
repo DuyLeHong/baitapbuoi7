@@ -6,14 +6,15 @@ import 'package:flutter/widgets.dart';
 
 import 'add_product.dart';
 import 'edit_product.dart';
+import 'list_tile_custom.dart';
 
 class ProductList extends StatefulWidget {
 
   @override
-  State<ProductList> createState() => _productListState;
+  State<ProductList> createState() => productListState;
 }
 
-_ProductListState _productListState = _ProductListState();
+_ProductListState productListState = _ProductListState();
 
 List<ProductModel> productList = <ProductModel>[
   ProductModel('Product 1', 100.0, 'Ok',
@@ -78,77 +79,6 @@ class _ProductListState extends State<ProductList> {
 
 }
 
-class ListTileCustom extends StatelessWidget {
-  ProductModel productModel;
-  ListTileCustom({required this.productModel});
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        _goToEditPage(context);
-      },
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            padding: const EdgeInsets.symmetric(vertical: 4.0),
-            alignment: Alignment.center,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                productModel.imageURL,
-              ),
-            ),
-          ),
-          SizedBox(width: 15,),
-          Expanded(
-            child: Text(productModel.title),
-          ),
-          InkWell(
-            onTap: () {
-              _goToEditPage(context);
-            },
-            child: const Icon(
-              Icons.edit,
-              color: Colors.purple,
-            ),
-          ),
-          SizedBox(width: 20,),
-          InkWell(
-            onTap: () {},
-            child: const Icon(
-              Icons.business,
-              color: Colors.green,
-            ),
-          ),
-          SizedBox(width: 20,),
-          InkWell(
-            onTap: () {
-              
-              _productListState.setState(() {
-                productList.remove(productModel);
-              });
-            },
-            child: const Icon(
-              Icons.delete,
-              color: Colors.red,
-            ),
-          ),
-          SizedBox(width: 20,),
-        ],
-      ),
-    );
-  }
-
-  void _goToEditPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) =>
-              EditProduct(productModel: productModel)),
-    );
-  }
-}
 
 
