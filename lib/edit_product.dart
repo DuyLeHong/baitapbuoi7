@@ -50,13 +50,13 @@ class _EditProductState extends State<EditProduct> {
     });
   }
 
-  void testAsync() {
-    for (int i = 0; i < 1000000000000; i++) {}
-  }
+  // void testAsync() {
+  //   for (int i = 0; i < 1000000000000; i++) {}
+  // }
 
   @override
   Widget build(BuildContext context) {
-    testAsync();
+    //testAsync();
 
     return SafeArea(
       child: Scaffold(
