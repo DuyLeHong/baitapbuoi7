@@ -1,4 +1,3 @@
-
 import 'package:baitapbuoi6/product_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'edit_product.dart';
 import 'list_tile_custom.dart';
 
 class ProductList extends StatefulWidget {
-
   @override
   State<ProductList> createState() => productListState;
 }
@@ -57,28 +55,52 @@ class _ProductListState extends State<ProductList> {
             )
           ],
         ),
-        body: ListView.separated(
-          // shrinkWrap: true,
-          padding: const EdgeInsets.all(8),
-          itemCount: productList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTileCustom(
-              productModel: productList[index],
-            );
+        body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+
+            print('MaxWidth: ${constraints.maxWidth}');
+
+            if (constraints.maxWidth > 600) {
+              return _buildWideContainers();
+            } else {
+              return _buildNormalContainer();
+            }
           },
-          separatorBuilder: (BuildContext context, int index) => const Divider(
-            thickness: 1,
-            color: Colors.black12,
-            indent: 10,
-            endIndent: 10,
-          ),
         ),
       ),
     );
   }
-
 }
 
+Widget _buildWideContainers() {
+  return GridView.builder(
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+    ),
+    itemCount: productList.length,
+    itemBuilder: (BuildContext context, int index) {
+      return ListTileCustom(
+        productModel: productList[index],
+      );
+    },
+  );
+}
 
-
-
+Widget _buildNormalContainer() {
+  return ListView.separated(
+    // shrinkWrap: true,
+    padding: const EdgeInsets.all(8),
+    itemCount: productList.length,
+    itemBuilder: (BuildContext context, int index) {
+      return ListTileCustom(
+        productModel: productList[index],
+      );
+    },
+    separatorBuilder: (BuildContext context, int index) => const Divider(
+      thickness: 1,
+      color: Colors.black12,
+      indent: 10,
+      endIndent: 10,
+    ),
+  );
+}
