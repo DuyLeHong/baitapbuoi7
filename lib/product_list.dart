@@ -75,7 +75,7 @@ class _ProductListState extends State<ProductList> {
 Widget _buildWideContainers() {
   return GridView.builder(
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 2,
+      crossAxisCount: 3,
     ),
     itemCount: productList.length,
     itemBuilder: (BuildContext context, int index) {
