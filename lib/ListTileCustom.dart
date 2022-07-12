@@ -9,51 +9,64 @@ class ListTileCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: 48,
-          height: 48,
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
-          alignment: Alignment.center,
-          child: CircleAvatar(
-            backgroundImage: NetworkImage(
-              productModel.imageURL,
+    return InkWell(
+      onTap: () {
+        goToEditPage(context);
+      },
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            alignment: Alignment.center,
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                productModel.imageURL,
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: Text(productModel.title),
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      EditProduct(productModel: productModel)),
-            );
-          },
-          child: const Icon(
-            Icons.edit,
-            color: Colors.purple,
+          SizedBox(width: 15,),
+          Expanded(
+            child: Text(productModel.title),
           ),
-        ),
-        InkWell(
-          onTap: () {},
-          child: const Icon(
-            Icons.calendar_today_rounded,
-            color: Colors.green,
+          InkWell(
+            onTap: () {
+              goToEditPage(context);
+            },
+            child: const Icon(
+              Icons.edit,
+              color: Colors.purple,
+            ),
           ),
-        ),
-        InkWell(
-          onTap: () {},
-          child: const Icon(
-            Icons.delete,
-            color: Colors.red,
+          SizedBox(width: 20,),
+          InkWell(
+            onTap: () {},
+            child: const Icon(
+              Icons.business,
+              color: Colors.green,
+            ),
           ),
-        )
-      ],
+          SizedBox(width: 20,),
+          InkWell(
+            onTap: () {},
+            child: const Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+          ),
+          SizedBox(width: 20,),
+        ],
+      ),
+    );
+  }
+
+  void goToEditPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              EditProduct(productModel: productModel)),
     );
   }
 }

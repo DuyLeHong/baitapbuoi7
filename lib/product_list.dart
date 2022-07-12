@@ -41,6 +41,8 @@ class ProductList extends StatelessWidget {
           separatorBuilder: (BuildContext context, int index) => const Divider(
             thickness: 1,
             color: Colors.black12,
+            indent: 10,
+            endIndent: 10,
           ),
         ),
       ),
